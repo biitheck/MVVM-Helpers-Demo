@@ -40,6 +40,9 @@ namespace MVVMHelpersDemo.ViewModels
 
         private async Task GetUsersAsync()
         {
+			// Clean text filter after click button get users.
+			this.TextFilter = string.Empty;
+
             if (this.IsBusy)
                 return;
 
