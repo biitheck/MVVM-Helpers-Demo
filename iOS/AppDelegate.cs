@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
+using Microsoft.Identity.Client;
 using UIKit;
 
 namespace MVVMHelpersDemo.iOS
@@ -15,10 +16,17 @@ namespace MVVMHelpersDemo.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             ImageCircleRenderer.Init();
+            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
         }
+
+		public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
+		{
+			AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(url);
+			return true;
+		}
     }
 }

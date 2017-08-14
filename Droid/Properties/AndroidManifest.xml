@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.ripper.MVVMHelpersDemo">
 	<uses-sdk android:minSdkVersion="19" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+	
 	<application android:label="MVVMHelpersDemo">
+		<activity android:name="microsoft.identity.client.BrowserTabActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="msal696bf7c8-38f4-46f9-9610-584e1a772eab" android:host="auth" />
+            </intent-filter>
+        </activity>
 	</application>
 </manifest>

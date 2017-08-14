@@ -23,7 +23,7 @@ namespace MVVMHelpersDemo.Views
             if (e.SelectedItem != null)
             {
                 var item = (User)e.SelectedItem;
-                await this.DisplayAlert(item.fullName, 
+                await this.DisplayAlert(item.fullName,
                            $"Phone: {item.phone}\nCell: {item.cell}", "OK");
             }
         }

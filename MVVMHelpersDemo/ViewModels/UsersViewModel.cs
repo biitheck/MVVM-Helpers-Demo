@@ -20,6 +20,7 @@ namespace MVVMHelpersDemo.ViewModels
 
         public ObservableRangeCollection<User> Users { get; set; }
         public Command GetUsersCommand { get; }
+        public Command GetTodoItemCommand { get; }
 
         #endregion
 
@@ -32,16 +33,18 @@ namespace MVVMHelpersDemo.ViewModels
             this.Users = new ObservableRangeCollection<User>();
             // Asignar comando.
             this.GetUsersCommand = new Command(async () => await GetUsersAsync());
+            this.GetTodoItemCommand = new Command(async () => await GetTodoItemAsync());
         }
 
         #endregion
+
 
         #region Private Methods
 
         private async Task GetUsersAsync()
         {
-			// Clean text filter after click button get users.
-			this.TextFilter = string.Empty;
+            // Clean text filter after click button get users.
+            this.TextFilter = string.Empty;
 
             if (this.IsBusy)
                 return;
@@ -91,6 +94,37 @@ namespace MVVMHelpersDemo.ViewModels
 
                     this.SetUsersInfo(filtered);
                 }
+            }
+        }
+
+        private async Task GetTodoItemAsync()
+        {
+            if (this.IsBusy)
+                return;
+
+            try
+            {
+                this.IsBusy = true;
+
+                var todoService = new Services.TodoItemService();
+
+                var result = await todoService.GetTableAsync();
+
+                var str = string.Empty;
+
+                foreach (var item in result)
+                    str += $"Id: {item.Id}\nText: {item.Text}\n" +
+                        $"Complete: {item.Complete}\nAzureVersion: {item.AzureVersion}\n";
+
+                await Application.Current.MainPage.DisplayAlert("Result From Azure Mobile App", str, "OK");
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+            }
+            finally
+            {
+                this.IsBusy = false;
             }
         }
 

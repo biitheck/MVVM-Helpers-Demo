@@ -42,5 +42,18 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.ripper.MVVMHelpersDemo</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>msal696bf7c8-38f4-46f9-9610-584e1a772eab</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

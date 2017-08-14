@@ -4,6 +4,15 @@
              x:Class="MVVMHelpersDemo.Views.UsersPage" 
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions" 
              Title="{Binding Title}">
+    <!-- ToolbarItems -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="Todo"
+            Order="Primary" 
+            Text="Todo" 
+            Priority="0" 
+            Command="{Binding GetTodoItemCommand}" />
+    </ContentPage.ToolbarItems>
     <AbsoluteLayout HorizontalOptions="FillAndExpand" 
             VerticalOptions="FillAndExpand">
         <StackLayout x:Name="contentLayout" 
